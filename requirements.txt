@@ -1,0 +1,29 @@
+#  FastAPI + Server
+fastapi
+uvicorn[standard]
+python-multipart
+
+#  Document Extraction
+pymupdf
+
+#  OCR
+requests
+
+#  LangChain + LLM
+langchain
+langchain-groq
+langchain-openai
+langchain-community
+
+#  Config
+python-dotenv
+
+#  Database
+sqlalchemy
+
+#  Validation
+pydantic
+pydantic-settings
+
+#  Embedding 
+scikit-learn

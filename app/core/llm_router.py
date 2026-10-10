@@ -7,7 +7,7 @@ class LLMRouter :
         self.primary = ChatGroq(
             api_key=settings.GROQ_API_KEY,
             model="openai/gpt-oss-120b",
-            temperature=0.3
+            temperature=0
         )
 
         self.fallback = ChatGoogleGenerativeAI(

@@ -1,6 +1,8 @@
 from fastapi import UploadFile , File ,APIRouter
 import os 
 import fitz
+from app.services.syllabus_parser import parse_syllabus
+from app.db.crud import save_syllabus
 
 router = APIRouter()
 
@@ -33,5 +35,20 @@ async def upload_file(file:UploadFile = File(...)):
 
 
 
-    return{"text" : text}
+    #  Parse
+    syllabus_data = parse_syllabus(text)
+
+    #  Save
+    saved = save_syllabus(
+        subject=syllabus_data.subject,
+        units=[u.model_dump() for u in syllabus_data.units],
+        filename=file.filename,
+    )
+
+    return {
+        "saved": True,
+        "id": saved.id,
+        "subject": saved.subject,
+        "units_count": len(saved.units),
+    }
 
